@@ -15,4 +15,4 @@ In this sample, we have enhanced the appearance of Stacked Area Chart by customi
 * Axis Style
 * Tooltip Template
 
-For more details on the step-by Step procedure, refer to the Blog of the [GDP Share of US School Revenue in Stacked Area Chart]().
+For more details on the step-by-step procedure, refer to the Blog of the [GDP Share of US School Revenue in Stacked Area Chart]().

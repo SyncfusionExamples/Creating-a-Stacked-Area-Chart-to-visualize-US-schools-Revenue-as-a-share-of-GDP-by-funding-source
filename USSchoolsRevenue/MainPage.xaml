@@ -81,11 +81,11 @@
             <chart:SfCartesianChart.YAxes>
                 <chart:NumericalAxis>
                     <chart:NumericalAxis.MajorTickStyle>
-                        <chart:ChartAxisTickStyle StrokeWidth="0" Stroke="Transparent"/>
+                        <chart:ChartAxisTickStyle StrokeWidth="0"/>
                     </chart:NumericalAxis.MajorTickStyle>
 
                     <chart:NumericalAxis.AxisLineStyle>
-                        <chart:ChartLineStyle StrokeWidth="0" Stroke="Transparent"/>
+                        <chart:ChartLineStyle StrokeWidth="0"/>
                     </chart:NumericalAxis.AxisLineStyle>
 
                     <chart:NumericalAxis.LabelStyle>
