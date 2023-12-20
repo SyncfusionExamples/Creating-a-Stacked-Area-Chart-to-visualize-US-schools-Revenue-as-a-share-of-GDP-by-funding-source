@@ -46,7 +46,7 @@
                         </VerticalStackLayout>
                     </HorizontalStackLayout>
                 </DataTemplate>
-                <DataTemplate x:Key="StateTooltipTemplate2">
+                <DataTemplate x:Key="StateTooltipTemplate">
                     <HorizontalStackLayout>
                         <BoxView BackgroundColor="#3876BF" Margin="5,0,5,0" WidthRequest="5"/>
                         <VerticalStackLayout>
@@ -112,6 +112,7 @@
                                       Stroke="#E1AA74"
                                       StrokeWidth="1.5"
                                       TooltipTemplate="{StaticResource FederalTooltipTemplate}"/>
+
                 <chart:StackingAreaSeries x:Name="Series2" 
                                       ItemsSource="{Binding FundingSourceCollection}"
                                       XBindingPath="Year"
@@ -123,7 +124,8 @@
                                       Opacity="0.9"
                                       Stroke="#3876BF"
                                       StrokeWidth="1.5"
-                                      TooltipTemplate="{StaticResource StateTooltipTemplate2}"/>
+                                      TooltipTemplate="{StaticResource StateTooltipTemplate}"/>
+
                 <chart:StackingAreaSeries x:Name="Series3" 
                                       ItemsSource="{Binding FundingSourceCollection}"
                                       XBindingPath="Year"
@@ -136,9 +138,9 @@
                                       Stroke="#3a4e99"
                                       StrokeWidth="1.5"
                                       TooltipTemplate="{StaticResource LocalTooltipTemplate}"/>
+
             </chart:SfCartesianChart.Series>
         </chart:SfCartesianChart>
     </Border>
-
-
+    
 </ContentPage>
