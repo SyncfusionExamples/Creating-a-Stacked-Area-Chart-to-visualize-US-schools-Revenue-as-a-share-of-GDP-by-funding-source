@@ -6,3 +6,12 @@ The stacked Area chart is a dynamic visualization that allows us to observe chan
 
 
 ![Stacked Area chart](https://github.com/SyncfusionExamples/Creating-a-Stacked-Area-Chart-to-visualize-US-schools-Revenue-as-a-share-of-GDP-by-funding-source/assets/124584591/23e7a91b-d0f0-42c9-9580-1c6c43f04fb5)
+
+**Customized Chart appearance**
+In this sample, we have enhanced the appearance of Stacked Area Chart by customizing the follwing properties.
+* Chart Title
+* Chart Legend
+* Axis Style
+* Tooltip Template
+
+For more details on the step-by Step procedure, refer to the Blog of the [GDP Share of US School Revenue in Stacked Area Chart]().
