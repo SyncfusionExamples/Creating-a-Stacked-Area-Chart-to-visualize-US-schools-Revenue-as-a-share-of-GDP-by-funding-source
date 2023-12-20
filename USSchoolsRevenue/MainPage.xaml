@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:chart="clr-namespace:Syncfusion.Maui.Charts;assembly=Syncfusion.Maui.Charts"
+             xmlns:local="clr-namespace:USSchoolsRevenue"
+             x:Class="USSchoolsRevenue.MainPage">
+
+    <ContentPage.BindingContext>
+        <local:FoundingSourceViewModel x:Name="viewModel"/>
+    </ContentPage.BindingContext>
+
+    <Border Margin="20" Padding="10">
+        <chart:SfCartesianChart>
+            <!-- Title customization-->
+            <chart:SfCartesianChart.Title>
+                <HorizontalStackLayout Padding="0,0,0,20">
+                    <BoxView BackgroundColor="#FF855FF2" 
+                         Margin="5,0,5,0" 
+                         HeightRequest="40"  
+                         WidthRequest="10"/>
+                    <VerticalStackLayout>
+                        <Label Text="Funding source for public schools,United States, 1890 to 2010"
+                        TextColor="Black"
+                        FontSize="18"
+                        FontFamily="TimeSpan"
+                        FontAttributes="Bold"
+                        Margin="0,0,0,0" />
+                        <Label Text="Revenues for public elementary and secondary schools in the US, as share of GDP, by source of funds"
+                        TextColor="Black"
+                        FontSize="12"
+                        FontFamily="TimeSpan"
+                        Margin="0,5,0,0"
+                        />
+                    </VerticalStackLayout>
+                </HorizontalStackLayout>
+            </chart:SfCartesianChart.Title>
+
+            <chart:SfCartesianChart.Resources>
+                <!--- tooltip template-->
+                <DataTemplate x:Key="FederalTooltipTemplate">
+                    <HorizontalStackLayout>
+                        <BoxView BackgroundColor="#E1AA74" Margin="5,0,5,0" WidthRequest="5"/>
+                        <VerticalStackLayout>
+                            <Label Text="{Binding Item.Year, StringFormat='Year  : {0}'}" TextColor="White"/>
+                            <Label Text="{Binding Item.FederalFund,StringFormat='{0:F2}%'}" TextColor="White"/>
+                        </VerticalStackLayout>
+                    </HorizontalStackLayout>
+                </DataTemplate>
+                <DataTemplate x:Key="StateTooltipTemplate">
+                    <HorizontalStackLayout>
+                        <BoxView BackgroundColor="#3876BF" Margin="5,0,5,0" WidthRequest="5"/>
+                        <VerticalStackLayout>
+                            <Label Text="{Binding Item.Year, StringFormat='Year  : {0}'}" TextColor="White"/>
+                            <Label Text="{Binding Item.StateFund, StringFormat='{0:F2}%'}" TextColor="White"/>
+                        </VerticalStackLayout>
+                    </HorizontalStackLayout>
+                </DataTemplate>
+                <DataTemplate x:Key="LocalTooltipTemplate">
+                    <HorizontalStackLayout>
+                        <BoxView BackgroundColor="#2b408c" Margin="5,0,5,0" WidthRequest="5"/>
+                        <VerticalStackLayout>
+                            <Label Text="{Binding Item.Year,StringFormat='Year  : {0}'}" TextColor="White"/>
+                            <Label Text="{Binding Item.LocalFund, StringFormat='{0:F2}%'}" TextColor="White"/>
+                        </VerticalStackLayout>
+                    </HorizontalStackLayout>
+                </DataTemplate>
+            </chart:SfCartesianChart.Resources>
+
+            <!---Legend initialization-->
+            <chart:SfCartesianChart.Legend>
+                <chart:ChartLegend Placement="Bottom"/>
+            </chart:SfCartesianChart.Legend>
+
+            <!---Chart Axis-->
+            <chart:SfCartesianChart.XAxes>
+                <chart:CategoryAxis  ShowMajorGridLines="False" 
+                                 ShowTrackballLabel="True" 
+                                 Interval="8" EdgeLabelsDrawingMode="Center" />
+            </chart:SfCartesianChart.XAxes>
+
+            <chart:SfCartesianChart.YAxes>
+                <chart:NumericalAxis>
+                    <chart:NumericalAxis.MajorTickStyle>
+                        <chart:ChartAxisTickStyle StrokeWidth="0"/>
+                    </chart:NumericalAxis.MajorTickStyle>
+
+                    <chart:NumericalAxis.AxisLineStyle>
+                        <chart:ChartLineStyle StrokeWidth="0"/>
+                    </chart:NumericalAxis.AxisLineStyle>
+
+                    <chart:NumericalAxis.LabelStyle>
+                        <chart:ChartAxisLabelStyle LabelFormat="0'%"/>
+                    </chart:NumericalAxis.LabelStyle>
+
+                    <chart:NumericalAxis.Title>
+                        <chart:ChartAxisTitle Text="Share of GDP"/>
+                    </chart:NumericalAxis.Title>
+                </chart:NumericalAxis>
+            </chart:SfCartesianChart.YAxes>
+
+            <!---Chart Series-->
+            <chart:SfCartesianChart.Series>
+                <chart:StackingAreaSeries x:Name="Series1" 
+                                      ItemsSource="{Binding FundingSourceCollection}"
+                                      XBindingPath="Year"
+                                      YBindingPath="FederalFund"
+                                      Fill="#E1AA74"
+                                      Label="Federal/Unassigned"
+                                      LegendIcon="SeriesType"
+                                      EnableTooltip="True"
+                                      Opacity="0.8"
+                                      Stroke="#E1AA74"
+                                      StrokeWidth="1.5"
+                                      TooltipTemplate="{StaticResource FederalTooltipTemplate}"/>
+
+                <chart:StackingAreaSeries x:Name="Series2" 
+                                      ItemsSource="{Binding FundingSourceCollection}"
+                                      XBindingPath="Year"
+                                      YBindingPath="StateFund"
+                                      Fill="#3876BF"
+                                      Label="State"
+                                      LegendIcon="SeriesType"
+                                      EnableTooltip="True"
+                                      Opacity="0.9"
+                                      Stroke="#3876BF"
+                                      StrokeWidth="1.5"
+                                      TooltipTemplate="{StaticResource StateTooltipTemplate}"/>
+
+                <chart:StackingAreaSeries x:Name="Series3" 
+                                      ItemsSource="{Binding FundingSourceCollection}"
+                                      XBindingPath="Year"
+                                      YBindingPath="LocalFund"
+                                      Fill="#2b408c"
+                                      Label="Local"
+                                      LegendIcon="SeriesType"
+                                      EnableTooltip="True"
+                                      Opacity="0.9"
+                                      Stroke="#3a4e99"
+                                      StrokeWidth="1.5"
+                                      TooltipTemplate="{StaticResource LocalTooltipTemplate}"/>
+
+            </chart:SfCartesianChart.Series>
+        </chart:SfCartesianChart>
+    </Border>
+    
+</ContentPage>
